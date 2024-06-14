@@ -7,6 +7,6 @@ public:
             if (nums[i]==nums[i-1]) r++, nums[i]++;
             else if (nums[i]<nums[i-1])  r+=nums[i-1]-nums[i]+1, nums[i]=nums[i-1]+1;
         }
-        return r;
+        return r; 
     }
 };
