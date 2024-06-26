@@ -10,17 +10,6 @@
 #define PI 3.14159265359
 using namespace std;
 
-unsigned long long factorial[21]; //the limit to be stored is factorial of 20
-
-void prepareFactorial(){
-
-    factorial[0]=factorial[1]=1;
-
-    for (int i=2;i<21;++i)
-        factorial[i]=factorial[i-1]*(long long)i;
-
-}
-
 int main(){
 
     int n,m; cin>>n>>m;
