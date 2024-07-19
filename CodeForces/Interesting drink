@@ -1,0 +1,72 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+#define PI 3.14159265359
+#define ull unsigned long long
+#define ascSort(v) sort(v.begin(), v.end())
+#define desSort(v) sort(v.rbegin(), v.rend())
+using namespace std;
+
+int main()
+{
+    int n, q, t;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    ascSort(v);
+
+    cin >> q;
+    while (q--)
+    {
+        cin >> t;
+        if (t < v[0])
+        {
+            cout << 0 << endl;
+            continue;
+        }
+        else if (t >= v[n - 1])
+        {
+            cout << n << endl;
+            continue;
+        }
+
+        int l = 0, r = n - 1, m;
+        int res = 0;
+        while (r >= l)
+        {
+            if (l == r)
+            {
+                if (v[l] == t)
+                    res = l;
+                break;
+            }
+
+            m = l + (ceil)((r - l) / 2.0);
+            if (v[m] <= t)
+                l = m;
+            else if (v[m] > t)
+                r = m;
+
+            if (v[m] == t)
+            {
+                while (m < n - 1 && v[m] == t)
+                    m++;
+                res = m;
+                break;
+            }
+            if (r > 1 && v[r] > t && v[r - 1] <= t)
+            {
+                res = r;
+                break;
+            }
+            else if (l < n - 1 && v[l] <= t && v[l + 1] > t)
+            {
+                res = l + 1;
+                break;
+            }
+        }
+
+        cout << res << endl;
+    }
+}
