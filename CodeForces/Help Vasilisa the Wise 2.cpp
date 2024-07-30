@@ -7,21 +7,6 @@
 #define ascSort(v) sort(v.begin(), v.end())
 #define desSort(v) sort(v.rbegin(), v.rend())
 using namespace std;
-
-vector<ull> factorial(21, 1);
-
-ull c(int n, int r)
-{
-    int q = n - r;
-    ull ans = 1;
-    if (n <= 20)
-        return (factorial[n] / factorial[r] / factorial[q]);
-
-    for (int i = n; i > max(r, q); i--)
-        ans *= i;
-    return (ans / factorial[min(r, q)]);
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
