@@ -1,22 +1,21 @@
 class Solution {
-    int[][] dp;
-    int r,c;
     public int uniquePaths(int m, int n) {
-        r=m;
-        c=n;
-        dp = new int[m][n];
-        return numberOfPaths(0,0);
-    }
-    
-    public int numberOfPaths(int i, int j){
-        if (i==r||j==c) return 0;
-        if (dp[i][j]!=0) return dp[i][j];
-        if (i==r-1 && j==c-1) return 1;
-        int r1=0,r2=0;
 
-        r1 += numberOfPaths(i+1,j);
-        r2 += numberOfPaths(i,j+1);
+        int[][] numberOfPossiblePath = new int[m][n];
+        numberOfPossiblePath[m-1][n-1] = 1;
 
-        return dp[i][j]=r1+r2;
+        for (int i=m-1; i>=0; i--){
+            for (int j=n-1; j>=0; j--){
+                if (i==m-1 && j==n-1){
+                    continue;
+                }
+                
+                int waysByGoingRight = (j+1 < n) ? numberOfPossiblePath[i][j+1] : 0;
+                int waysByGoingDown = (i+1 < m) ? numberOfPossiblePath[i+1][j] : 0;
+                numberOfPossiblePath[i][j] = waysByGoingRight + waysByGoingDown;  
+            }
+        }
+
+        return numberOfPossiblePath[0][0];
     }
 }
